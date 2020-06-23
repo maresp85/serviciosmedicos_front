@@ -24,22 +24,26 @@ export class LoginComponent implements OnInit {
     // Login de usuario
   onSubmit(form: NgForm) { 
     
+    console.log(form);
+
     if (form.invalid) { return; }
 
     this.loadingButton = true;
 
-    this._usService.autenticarUsuario(this.usuario.identificacion, this.usuario.fechanacimiento)
+    this._usService.autenticarUsuario(this.usuario.identificacion, 
+                                      this.usuario.fechanacimiento)
                    .subscribe((res: any) => { 
                       if (res.ok == true) {
                         this.loadingButton = false;
-                        this._usService.guardarLocalUsuario(res.usuarioDB._id,
-                                                            res.usuarioDB.email,
-                                                            res.usuarioDB.role,
-                                                            res.usuarioDB.nombre,
-                                                            res.usuarioDB.identificacion)
-                                        .then(() => {
-                                          this.router.navigate(["/home"]);
-                                        }).catch(() => {});
+                        this._usService
+                            .guardarLocalUsuario(res.usuarioDB._id,
+                                                 res.usuarioDB.email,
+                                                 res.usuarioDB.role,
+                                                 res.usuarioDB.nombre,
+                                                 res.usuarioDB.identificacion)
+                            .then(() => {
+                              this.router.navigate(["/"]);
+                            }).catch(() => {});
                       } else {
                         this.error();
                       }         

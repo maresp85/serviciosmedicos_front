@@ -2,7 +2,7 @@
 
     <app-sidebar></app-sidebar>
   
-    <div class="main-panel ps-container ps-theme-default ps-active-y" data-ps-id="1ed78ac3-e3e8-040c-b201-b36b7ecbd826">
+    <div class="main-panel">
       <!-- Navbar -->
       <app-navbar></app-navbar>
       <!-- End Navbar -->
@@ -11,10 +11,9 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title ">CITAS MÉDICAS</h4>
-                  <p class="card-category"> Estado de mis citas médicas</p>
-                </div>
+                <app-cardtitle [title]="title" 
+                               [title2]="title2">
+                </app-cardtitle>
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table">
@@ -25,7 +24,8 @@
                           <th>Médico(a)</th>
                           <th>Fecha y Hora</th>
                           <th style="text-align: center;">Estado</th>
-                      </tr></thead>
+                        </tr>
+                      </thead>
                       <tbody>                 
                         <tr *ngFor="let lista of listado;">
                           <td>{{ lista.id }}</td>   
@@ -60,15 +60,6 @@
         </div>
       </div>
 
-    <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-      
-      <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">
-      </div>
-    </div>
-    <div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px; height: 625px;">
-      <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 316px;">
-      </div>
-    </div>
     </div>
 
 </div>

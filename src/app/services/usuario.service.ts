@@ -39,11 +39,6 @@ export class UsuarioService {
     return this.getQuery('usuario');
   }
 
-   // Consulta de todos los usuarios
-  getUsuarioEmpresa(empresa: any) {    
-    return this.getQuery(`usuario/${ empresa }`);
-  }
-
    // Consulta de un usuario
   getUnUsuario() {    
     let email = this.leerEmailUsuario();
@@ -53,64 +48,12 @@ export class UsuarioService {
   getUsuarioEmail(email: any) {    
     return this.getQuery(`unusuario/${ email }`);
   }
-
-   // POST crear usuarios
-  crearUsuario(nombre: any, 
-               password: any, 
-               email: any, 
-               role: any, 
-               empresa: any, 
-               signimg: File) {
-    
-    let activo: any = true;
-    let imgfirma: any = Date.now() + signimg.name;
-    const params = new FormData();
-    params.append('nombre', nombre); 
-    params.append('password', password); 
-    params.append('email', email); 
-    params.append('role', role); 
-    params.append('activo', activo); 
-    params.append('empresa', empresa);
-    params.append('imgfirma', imgfirma);
-    params.append('signimg', signimg);    
-    
-    const url = `${ this.url }/usuario/`;
-    
-    return this.http.post(url, params);
+  
+   // Consulta de todos los usuarios
+  getMedicoEspecialista() {    
+    return this.getQuery('usuarioespecialista');
   }
-
-  //edita Usuario
-  putUsuario(_id: any,
-             nombre: any,
-             estado: any) {
-
-    const myObj = {
-      "nombre": nombre,
-      "estado": estado
-    };
-
-    const params = JSON.stringify(myObj);
-    const url = `${ this.url }/usuario/editar/${ _id }`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });  
-
-    return this.http.put(url, params, { headers });
-  }
-
-   //edita Usuario
-   putUsuarioClave(_id: any,
-                   password: any) {
-
-    const myObj = {
-      "password": password
-    };
-
-    const params = JSON.stringify(myObj);
-    const url = `${ this.url }/usuario/editarclave/${ _id }`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });  
-
-    return this.http.put(url, params, { headers });
-  }
-
+  
    // Revisar si el usuario se encuentra autenticado
   public estaAutenticado(): boolean {
     if (localStorage.getItem('autenticado') == 'true') {

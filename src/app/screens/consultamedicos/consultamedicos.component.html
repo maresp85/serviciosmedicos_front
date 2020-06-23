@@ -1,0 +1,65 @@
+<div class="wrapper">
+
+    <app-sidebar></app-sidebar>
+  
+    <div class="main-panel">
+      <!-- Navbar -->
+      <app-navbar></app-navbar>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">              
+                <app-cardtitle [title]="title" 
+                               [title2]="title2">
+                </app-cardtitle>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <tr>
+                          <th style="text-align: center;">Médico(a)</th>
+                          <th style="text-align: center;">Identificación</th>
+                          <th style="text-align: center;">Especialidad</th>
+                          <th style="text-align: center;">Fecha de Nacimiento</th>
+                          <th style="text-align: center;">Imagen</th>
+                        </tr>
+                      </thead>
+                      <tbody>                 
+                        <tr *ngFor="let lista of listado | paginate:{itemsPerPage: 5, currentPage:p}">
+                          <td>{{ lista.nombre }}</td>  
+                          <td>{{ lista.identificacion }}</td>  
+                          <td>{{ lista.especialidad.nombre }}</td>  
+                          <td style="text-align: center;">
+                            {{ lista.fechanacimiento | date:'dd/MM/yyyy':'UTC -5' }}
+                          </td>   
+                          <td style="text-align: center;">
+                            <div class="card-avatar">
+                              <a href="javascript:;">
+                                <img class="img" src="{{ urluploadimg }}{{ lista.imagen }}" >
+                              </a>
+                            </div>
+                          </td>                  
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="row text-center">
+                    <div class="col-md-12 col-lg-12">
+                        <pagination-controls (pageChange)="p=$event" 
+                            previousLabel="Anterior"
+                            nextLabel="Siguiente">
+                        </pagination-controls>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+            </div>
+   
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+</div>

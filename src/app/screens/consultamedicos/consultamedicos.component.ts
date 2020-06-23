@@ -1,29 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { ProcesosService } from 'src/app/services/procesos.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+  selector: 'app-consultamedicos',
+  templateUrl: './consultamedicos.component.html',
   styleUrls: []
 })
-export class HomeComponent implements OnInit {
+export class ConsultaMedicosComponent implements OnInit {
 
-  title: string = "CITAS MÉDICAS";
-  title2: string = "Estado de mis citas médicas";
+  title: string = "MÉDICOS ESPECIALISTAS";
+  title2: string = "Consulta los Médicos Especialistas";
   loading: boolean = false;
   listado: any = [];
-
+  urluploadimg: any = environment.url + environment.uploadimages;
+  p: number = 1;
+  
   constructor(private _orService: ProcesosService,
               private _usService: UsuarioService) { }
 
   ngOnInit() {
     this.loading = true;
-    let _id: any = this._usService.leerIDUsuario();
-    this._orService.getCita(_id)
+    this._usService.getMedicoEspecialista()
                    .subscribe((res: any) => {  
-                      this.listado = res.citaDB;
-                      console.log(res);
+                      this.listado = res.usuarioDB;
+                      console.log(this.listado);
                       this.loading = false;        
                    }, error => { this.loading = false }); 
   }

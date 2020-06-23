@@ -1,0 +1,68 @@
+<div class="wrapper">
+
+    <app-sidebar></app-sidebar>
+  
+    <div class="main-panel">
+      <!-- Navbar -->
+      <app-navbar></app-navbar>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">PEDIR CITA MÉDICA</h4>
+                  <p class="card-category"> 
+                    Seleccione Fecha, Servicio, Médico(a) y Hora de su nueva cita
+                  </p>
+                </div>               
+                <div class="card-body">                  
+                  <div class="row mt-4">
+                    <div class="col-md-3">
+                      <air-datepicker [airOptions]="optionsCalendar" 
+                                      (airChange)="dateChanged($event)">
+                      </air-datepicker> 
+                    </div>
+                    <div class="col-md-3">
+                      <select class="form-control">
+                        <option value="" disabled selected>Seleccione el Servicio</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <select class="form-control">
+                        <option value="" disabled selected>Seleccione el Médico (a)</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                      </select>
+                    </div>                    
+                    <div class="col-md-3">                      
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead class=" text-primary">
+                            <tr>
+                              <th>N°</th>
+                            </tr>
+                          </thead>
+                          <tbody>                 
+                            <tr *ngFor="let lista of listado;">
+                              <td>{{ lista }}</td>  
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>                     
+                    </div>
+
+              </div>
+            </div>
+   
+          </div>
+        </div>
+      </div>    
+    </div>
+
+</div>

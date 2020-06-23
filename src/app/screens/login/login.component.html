@@ -1,65 +1,76 @@
 <div class="login-page">
   <div class="login-box">
-<div class="login-logo">
-  <a href="../../index2.html"><b>Sistema</b>Ordenes</a>
-</div>
-<!-- /.login-logo -->
-<div class="card">
-  <div class="card-body login-card-body">
-    <p class="login-box-msg">
-      <img src="../../../assets/angularingenieria_logo.PNG" width="120px">
-    </p>
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <div class="input-group mb-3">
-        <input type="text" 
-               class="form-control"
-               name="identificacion"
-               [(ngModel)]="usuario.identificacion"
-               [ngClass]="{'is-invalid':f.submitted && f.controls['identificacion'].errors}"
-               placeholder="Número de identificación" 
-               required>
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fa fa-envelope"></span>
-          </div>
-        </div>
-      </div>
-      <div class="input-group mb-3">
-        <input type="date" 
-               class="form-control" 
-               name="fechanacimiento"
-               [(ngModel)]="usuario.fechanacimiento" 
-               [ngClass]="{'is-invalid':f.submitted && f.controls['fechanacimiento'].errors}"
-               placeholder="Fecha de nacimiento"
-               required>
-        <div class="input-group-append">
-          <div class="input-group-text">
-            <span class="fa fa-lock"></span>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <!--<div class="col-7">
-          <div class="icheck-primary">
-            <input type="checkbox" id="remember">
-            <label for="remember">
-              Recordarme
-            </label>
-          </div>
-        </div>-->
-        <!-- /.col -->
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary btn-block">
-            <i [ngClass]="{'fa-refresh fa-spin':loadingButton}" class="fa"></i>
-            Ingresar            
-          </button>
-        </div>
-        <!-- /.col -->
-      </div>
-    </form>
 
-  </div>
-  <!-- /.login-card-body -->
-</div>
+    <div class="row mt-5">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Servicios Médicos</h4>
+            <p class="card-category">Ingrese al Portal de Servicios Médicos</p>
+          </div>
+          <div class="card-body">
+              <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                <div class="input-group mb-3">
+                  <label class="bmd-label-floating">Número de identificación</label>
+                </div>
+                <div class="input-group mb-3">              
+                  <input type="text" 
+                         class="form-control"
+                         name="identificacion"
+                         [(ngModel)]="usuario.identificacion"
+                         [ngClass]="{'is-invalid':f.submitted && f.controls['identificacion'].errors}"
+                         placeholder="Digite aquí su número de identificación" 
+                         required>
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fa fa-user"></span>
+                    </div>
+                    <i *ngIf="f.submitted && f.controls['identificacion'].errors" 
+                        class="material-icons" style="color:red">
+                      warning
+                    </i>
+                  </div>
+                </div>
+                <div class="input-group mb-3">
+                  <label class="bmd-label-floating">Fecha de Nacimiento</label>
+                </div>
+                <div class="input-group mb-3">
+                  <input type="date" 
+                         class="form-control" 
+                         name="fechanacimiento"
+                         [(ngModel)]="usuario.fechanacimiento" 
+                         [ngClass]="{'is-invalid':f.submitted && f.controls['fechanacimiento'].errors}"
+                         placeholder="Fecha de nacimiento"
+                         required>
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fa fa-calendar"></span>
+                    </div>
+                    <i *ngIf="f.submitted && f.controls['fechanacimiento'].errors" 
+                        class="material-icons" style="color:red">
+                      warning
+                    </i>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-block">
+                      <i [ngClass]="{'fa-refresh fa-spin':loadingButton}" class="fa"></i>
+                      Ingresar            
+                    </button>
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </form>
+              
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+    
   </div>
 </div>

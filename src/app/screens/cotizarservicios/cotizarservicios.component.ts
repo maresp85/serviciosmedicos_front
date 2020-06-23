@@ -3,14 +3,14 @@ import { ProcesosService } from 'src/app/services/procesos.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+  selector: 'app-cotizarservicios',
+  templateUrl: './cotizarservicios.component.html',
   styleUrls: []
 })
-export class HomeComponent implements OnInit {
+export class CotizarServiciosComponent implements OnInit {
 
-  title: string = "CITAS MÉDICAS";
-  title2: string = "Estado de mis citas médicas";
+  title: string = "COTIZAR SERVICIOS";
+  title2: string = "Cotice Servicios de Cirugía";
   loading: boolean = false;
   listado: any = [];
 
