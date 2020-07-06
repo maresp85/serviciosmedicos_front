@@ -3,16 +3,17 @@ import { ProcesosService } from 'src/app/services/procesos.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+  selector: 'app-micita',
+  templateUrl: './micita.component.html',
   styleUrls: []
 })
-export class HomeComponent implements OnInit {
+export class MiCitaComponent implements OnInit {
 
   title: string = "CITAS MÉDICAS";
   title2: string = "Estado de mis citas médicas";
   loading: boolean = false;
   listado: any = [];
+  p: number = 1;
 
   constructor(private _orService: ProcesosService,
               private _usService: UsuarioService) { }
@@ -22,10 +23,11 @@ export class HomeComponent implements OnInit {
     let _id: any = this._usService.leerIDUsuario();
     this._orService.getCita(_id)
                    .subscribe((res: any) => {  
-                      this.listado = res.citaDB;
-                      console.log(res);
+                      this.listado = res.citaDB;                      
                       this.loading = false;        
-                   }, error => { this.loading = false }); 
+                   }, error => { 
+                     this.loading = false 
+                    }); 
   }
 
 }

@@ -1,9 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd  } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import Swal from 'sweetalert2';
+import { Component, OnInit } from '@angular/core';
+import { Router  } from '@angular/router';
 import { UsuarioModel } from '../../models/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',
@@ -24,8 +25,6 @@ export class LoginComponent implements OnInit {
     // Login de usuario
   onSubmit(form: NgForm) { 
     
-    console.log(form);
-
     if (form.invalid) { return; }
 
     this.loadingButton = true;
@@ -42,7 +41,7 @@ export class LoginComponent implements OnInit {
                                                  res.usuarioDB.nombre,
                                                  res.usuarioDB.identificacion)
                             .then(() => {
-                              this.router.navigate(["/"]);
+                              this.router.navigate(["/miscitas"]);
                             }).catch(() => {});
                       } else {
                         this.error();

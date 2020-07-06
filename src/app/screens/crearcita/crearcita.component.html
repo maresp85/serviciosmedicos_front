@@ -11,46 +11,49 @@
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary">
-                  <h4 class="card-title">PEDIR CITA MÉDICA</h4>
-                  <p class="card-category"> 
-                    Seleccione Fecha, Servicio, Médico(a) y Hora de su nueva cita
-                  </p>
-                </div>               
+                <app-cardtitle [title]="title" 
+                               [title2]="title2">
+                </app-cardtitle>            
                 <div class="card-body">                  
                   <div class="row mt-4">
                     <div class="col-md-3">
+                      <p lass="card-category" style="font-size: 12pt">
+                        <strong>Fecha de cita:</strong> {{ fecha }}
+                      </p>
                       <air-datepicker [airOptions]="optionsCalendar" 
                                       (airChange)="dateChanged($event)">
                       </air-datepicker> 
                     </div>
                     <div class="col-md-3">
-                      <select class="form-control">
+                      <select class="form-control ml-2" (change)="onChangeServicio($event.target.value)">
                         <option value="" disabled selected>Seleccione el Servicio</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                        <option [value]="t._id" *ngFor="let t of servicios">{{ t.nombre }}</option>
                       </select>
                     </div>
                     <div class="col-md-3">
-                      <select class="form-control">
-                        <option value="" disabled selected>Seleccione el Médico (a)</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
+                      <select class="form-control" (change)="onChangeMedico($event.target.value)">
+                        <option value="" disabled selected>Seleccione el Médico(a)</option>
+                        <option [value]="t._id" *ngFor="let t of medicos">{{ t.nombre }}</option>
                       </select>
                     </div>                    
                     <div class="col-md-3">                      
-                      <div class="table-responsive">
+                      <div class="table-responsive" *ngIf="flagServicio && flagMedico">
                         <table class="table">
-                          <thead class=" text-primary">
+                          <thead class="text-primary">
                             <tr>
-                              <th>N°</th>
+                              <th>Horario</th>
                             </tr>
                           </thead>
                           <tbody>                 
                             <tr *ngFor="let lista of listado;">
-                              <td>{{ lista }}</td>  
+                              <td>{{ lista.h2 }}</td>  
+                              <td> 
+                                <a (click)="agendarCita(lista.h1)"
+                                    class="btn-floating btn-large waves-effect waves-light red" 
+                                    style="cursor: pointer; color:green">
+                                  <i class="material-icons">arrow_circle_up</i>
+                                </a>                                
+                              </td>
                             </tr>
                           </tbody>
                         </table>

@@ -49,10 +49,15 @@ export class UsuarioService {
     return this.getQuery(`unusuario/${ email }`);
   }
   
-   // Consulta de todos los usuarios
+   // Consulta de todos los médicos
+  getMedico() {    
+    return this.getQuery('medico');
+  }
+
+  // Consulta de todos los médicos especialistas
   getMedicoEspecialista() {    
     return this.getQuery('usuarioespecialista');
-  }
+  }  
   
    // Revisar si el usuario se encuentra autenticado
   public estaAutenticado(): boolean {

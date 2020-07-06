@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
 
   cerrarSesion() {    
     this._usService.cerrar_sesion().then(()=>{
+      this.router.navigate(["./login"]);
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -34,7 +35,7 @@ export class NavbarComponent implements OnInit {
         icon: 'success',
         title: 'Cerrando sesión'
       })
-      this.router.navigateByUrl('/login');
+     
     });    
   }
 

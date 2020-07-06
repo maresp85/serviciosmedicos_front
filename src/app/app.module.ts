@@ -28,7 +28,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CardTitleComponent } from './components/cardtitle/cardtitle.component';
 //Screens
-import { HomeComponent } from './screens/home/home.component';
+import { MiCitaComponent } from './screens/micita/micita.component';
 import { LoginComponent } from './screens/login/login.component';
 import { CrearCitaComponent } from './screens/crearcita/crearcita.component';
 import { ConsultaMedicosComponent } from './screens/consultamedicos/consultamedicos.component';
@@ -41,7 +41,7 @@ import { CotizarServiciosComponent } from './screens/cotizarservicios/cotizarser
     NavbarComponent,
     SidebarComponent,
     CardTitleComponent,    
-    HomeComponent,    
+    MiCitaComponent,    
     LoginComponent,
     CrearCitaComponent,
     ConsultaMedicosComponent,

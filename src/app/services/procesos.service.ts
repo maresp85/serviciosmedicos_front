@@ -29,5 +29,26 @@ export class ProcesosService {
   getServicio() {    
     return this.getQuery(`servicio/listar`);
   }  
+
+     // Crear orden de trabajo
+  crearCita(fecha: any,
+            hora: any,                
+            servicio: any,
+            medico: any, 
+            paciente: any) {
+
+    const myObj = {
+      "fecha": fecha,
+      "hora": hora,
+      "servicio": servicio,
+      "medico": medico,
+      "paciente": paciente,
+    };    
+    const params = JSON.stringify(myObj);
+    const url = `${ this.url }/cita/crear/`;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });  
+
+    return this.http.post(url, params, { headers });
+  }
   
 }

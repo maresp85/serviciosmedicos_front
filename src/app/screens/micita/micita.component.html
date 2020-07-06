@@ -1,0 +1,81 @@
+<div class="wrapper">
+
+    <app-sidebar></app-sidebar>
+  
+    <div class="main-panel">
+      <!-- Navbar -->
+      <app-navbar></app-navbar>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+
+              <app-loading *ngIf="loading"></app-loading>   
+
+              <div *ngIf="!loading">
+
+                <div class="card">
+                  <app-cardtitle [title]="title" 
+                                [title2]="title2">
+                  </app-cardtitle>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class=" text-primary">
+                          <tr>
+                            <th>N°</th>
+                            <th>Servicio</th>
+                            <th>Médico(a)</th>
+                            <th>Fecha y Hora</th>
+                            <th style="text-align: center;">Estado</th>
+                          </tr>
+                        </thead>
+                        <tbody>                 
+                          <tr *ngFor="let lista of listado | paginate:{itemsPerPage: 5, currentPage:p}">
+                            <td>{{ lista.id }}</td>   
+                            <td>{{ lista.servicio.nombre }}</td>  
+                            <td>{{ lista.medico.nombre }}</td>  
+                            <td>{{ lista.fecha | date:'dd/MM/yyyy HH:mm':'UTC -5' }}</td>  
+                            <td style="text-align: center;">
+                              <span *ngIf="lista.estado == 'CONFIRMADA'" style="width: 160;" class="btn btn-primary btn-round">
+                                {{ lista.estado }}
+                              </span>
+                              <span *ngIf="lista.estado == 'CUMPLIDA'" style="width: 160;" class="btn btn-success btn-round">
+                                {{ lista.estado }}
+                              </span>
+                              <span *ngIf="lista.estado == 'PENDIENTE_PAGO'" style="width: 160;" class="btn btn-warning btn-round">
+                                PAGO PENDIENTE
+                              </span>
+                              <span *ngIf="lista.estado == 'ANULADA'" style="width: 160;" class="btn btn-danger btn-round">
+                                {{ lista.estado }}
+                              </span>
+                              <span *ngIf="lista.estado == 'REPROGRAMADA'" style="width: 160;" class="btn btn-primary btn-round">
+                                {{ lista.estado }}
+                              </span>
+                            </td>                             
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="row text-center">
+                      <div class="col-md-12 col-lg-12">
+                          <pagination-controls (pageChange)="p=$event" 
+                              previousLabel="Anterior"
+                              nextLabel="Siguiente">
+                          </pagination-controls>
+                      </div>
+                    </div> 
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+   
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+</div>

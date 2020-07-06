@@ -13,11 +13,11 @@ export class AppComponent {
   constructor(private router: Router,
               private _usService: UsuarioService) {
 
-    if (this._usService.leerRoleUsuario() == '' || 
+   /* if (this._usService.leerRoleUsuario() == '' || 
         this._usService.leerEmailUsuario() == '' ||
         this._usService.leerIDUsuario() == '') {
           this.router.navigate(["/login"]);
-    }
+    }*/
 
   }
 }

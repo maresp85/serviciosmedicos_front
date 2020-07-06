@@ -7,54 +7,44 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title">Servicios Médicos</h4>
-            <p class="card-category">Ingrese al Portal de Servicios Médicos</p>
+            <h4 class="card-title text-center">INGRESE AL PORTAL DE SERVICIOS MÉDICOS</h4>
           </div>
           <div class="card-body">
               <form (ngSubmit)="onSubmit(f)" #f="ngForm">
                 <div class="input-group mb-3">
-                  <label class="bmd-label-floating">Número de identificación</label>
+                  <label class="bmd-label-floating"></label>
                 </div>
-                <div class="input-group mb-3">              
+                <div class="input-field col s12">             
                   <input type="text" 
                          class="form-control"
                          name="identificacion"
                          [(ngModel)]="usuario.identificacion"
                          [ngClass]="{'is-invalid':f.submitted && f.controls['identificacion'].errors}"
-                         placeholder="Digite aquí su número de identificación" 
                          required>
+                  <label class="bmd-label-floating">Número de identificación</label>
                   <div class="input-group-append">
-                    <div class="input-group-text">
-                      <span class="fa fa-user"></span>
-                    </div>
                     <i *ngIf="f.submitted && f.controls['identificacion'].errors" 
                         class="material-icons" style="color:red">
                       warning
                     </i>
                   </div>
                 </div>
-                <div class="input-group mb-3">
-                  <label class="bmd-label-floating">Fecha de Nacimiento</label>
-                </div>
-                <div class="input-group mb-3">
+                <div class="input-field col s12 mt-3"> 
                   <input type="date" 
                          class="form-control" 
                          name="fechanacimiento"
                          [(ngModel)]="usuario.fechanacimiento" 
                          [ngClass]="{'is-invalid':f.submitted && f.controls['fechanacimiento'].errors}"
-                         placeholder="Fecha de nacimiento"
                          required>
+                  <label class="bmd-label-floating">Fecha de nacimiento</label>
                   <div class="input-group-append">
-                    <div class="input-group-text">
-                      <span class="fa fa-calendar"></span>
-                    </div>
                     <i *ngIf="f.submitted && f.controls['fechanacimiento'].errors" 
                         class="material-icons" style="color:red">
                       warning
                     </i>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row mt-4">
                   <div class="col-12">
                     <button type="submit" class="btn btn-primary btn-block">
                       <i [ngClass]="{'fa-refresh fa-spin':loadingButton}" class="fa"></i>
