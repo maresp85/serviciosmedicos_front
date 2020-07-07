@@ -34,13 +34,11 @@ export class CotizarServiciosComponent implements OnInit {
 
 
   // Login de usuario
-  onSubmit(form: NgForm) { 
-    
+  onSubmit(form: NgForm) {     
     if (form.invalid) { return; }
     this.loading = true;
     this.getDocument();
     this.loading = false;
-
   }
 
   getDocument() {

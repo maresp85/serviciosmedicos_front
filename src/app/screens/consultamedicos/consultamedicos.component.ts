@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProcesosService } from 'src/app/services/procesos.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consultamedicos',
@@ -17,7 +18,8 @@ export class ConsultaMedicosComponent implements OnInit {
   urluploadimg: any = environment.url + environment.uploadimages;
   p: number = 1;
   
-  constructor(private _orService: ProcesosService,
+  constructor(private router: Router,
+              private _orService: ProcesosService,
               private _usService: UsuarioService) { }
 
   ngOnInit() {
@@ -25,9 +27,13 @@ export class ConsultaMedicosComponent implements OnInit {
     this._usService.getMedicoEspecialista()
                    .subscribe((res: any) => {  
                       this.listado = res.usuarioDB;
-                      console.log(this.listado);
                       this.loading = false;        
-                   }, error => { this.loading = false }); 
+                    }, err => { 
+                      if (err.error.err.message == "Token no válido") {
+                        this.router.navigate(["/login"]);
+                      } 
+                      this.loading = false 
+                    }); 
   }
 
 }

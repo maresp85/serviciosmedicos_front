@@ -73,7 +73,8 @@ export class UsuarioService {
                       email: any, 
                       role: any, 
                       nombre: any, 
-                      identificacion: any) {
+                      identificacion: any,
+                      token: any) {
 
     return new Promise((resolve, reject) => {  
      
@@ -83,6 +84,7 @@ export class UsuarioService {
       localStorage.setItem("nombre", nombre);
       localStorage.setItem("identificacion", identificacion);   
       localStorage.setItem("autenticado", 'true');  
+      localStorage.setItem("token", token);  
 
       resolve({success :true});
     });
@@ -100,8 +102,10 @@ export class UsuarioService {
       localStorage.removeItem('nombre');      
       localStorage.removeItem('identificacion');      
       localStorage.removeItem('autenticado');   
+      localStorage.removeItem('token');   
       this.leerNombreUsuario();
       this.leerEmailUsuario();
+      this.leerToken();
 
       resolve({success :true});
     });
@@ -138,6 +142,14 @@ export class UsuarioService {
   leerEmailUsuario() { 
     if (localStorage.getItem('emailang') ) {    
       return localStorage.getItem('emailang');
+    } else {   
+      return '';
+    }     
+  }
+
+  leerToken() { 
+    if (localStorage.getItem('token') ) {    
+      return localStorage.getItem('token');
     } else {   
       return '';
     }     

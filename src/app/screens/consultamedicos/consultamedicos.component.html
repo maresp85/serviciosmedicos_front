@@ -28,7 +28,6 @@
                             <th style="text-align: center;">Médico(a)</th>
                             <th style="text-align: center;">Identificación</th>
                             <th style="text-align: center;">Especialidad</th>
-                            <th style="text-align: center;">Fecha de Nacimiento</th>
                             <th style="text-align: center;">Imagen</th>
                           </tr>
                         </thead>
@@ -36,10 +35,7 @@
                           <tr *ngFor="let lista of listado | paginate:{itemsPerPage: 5, currentPage:p}">
                             <td>{{ lista.nombre }}</td>  
                             <td>{{ lista.identificacion }}</td>  
-                            <td>{{ lista.especialidad.nombre }}</td>  
-                            <td style="text-align: center;">
-                              {{ lista.fechanacimiento | date:'dd/MM/yyyy':'UTC -5' }}
-                            </td>   
+                            <td>{{ lista.especialidad.nombre }}</td>    
                             <td style="text-align: center;">
                               <div class="card-avatar">
                                 <a href="javascript:;">

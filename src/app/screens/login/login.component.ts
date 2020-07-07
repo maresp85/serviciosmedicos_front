@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     this._usService.autenticarUsuario(this.usuario.identificacion, 
                                       this.usuario.fechanacimiento)
                    .subscribe((res: any) => { 
+                      console.log(res)
                       if (res.ok == true) {
                         this.loadingButton = false;
                         this._usService
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit {
                                                  res.usuarioDB.email,
                                                  res.usuarioDB.role,
                                                  res.usuarioDB.nombre,
-                                                 res.usuarioDB.identificacion)
+                                                 res.usuarioDB.identificacion,
+                                                 res.token)
                             .then(() => {
                               this.router.navigate(["/miscitas"]);
                             }).catch(() => {});

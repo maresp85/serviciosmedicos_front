@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProcesosService } from 'src/app/services/procesos.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-micita',
@@ -15,7 +16,8 @@ export class MiCitaComponent implements OnInit {
   listado: any = [];
   p: number = 1;
 
-  constructor(private _orService: ProcesosService,
+  constructor(private router: Router,
+              private _orService: ProcesosService,
               private _usService: UsuarioService) { }
 
   ngOnInit() {
@@ -24,8 +26,12 @@ export class MiCitaComponent implements OnInit {
     this._orService.getCita(_id)
                    .subscribe((res: any) => {  
                       this.listado = res.citaDB;                      
-                      this.loading = false;        
-                   }, error => { 
+                      this.loading = false;      
+                      console.log(res)  
+                   }, err => { 
+                     if (err.error.err.message == "Token no válido") {
+                      this.router.navigate(["/login"]);
+                     }
                      this.loading = false 
                     }); 
   }

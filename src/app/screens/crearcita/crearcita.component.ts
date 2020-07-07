@@ -50,7 +50,12 @@ export class CrearCitaComponent implements OnInit {
                                         this.servicios = res.servicioDB;
                                         this.loading = false;        
                                      }, error => { this.loading = false });                      
-                   }, error => { this.loading = false }); 
+                   }, err => { 
+                      if (err.error.err.message == "Token no válido") {
+                        this.router.navigate(["/login"]);
+                      } 
+                      this.loading = false 
+                    }); 
   }
 
    // Se captura la fecha seleccionada en el calendario 
@@ -61,6 +66,9 @@ export class CrearCitaComponent implements OnInit {
         icon: 'error',
         confirmButtonText: 'OK',
         allowOutsideClick: false
+      }).then((result) => {
+        this.flagServicio = false;
+        this.flagMedico = false;
       });       
     } else {
       this.fecha = date.toLocaleDateString();
